@@ -372,8 +372,7 @@ class _GpaCalculatorState extends State<GpaCalculator> {
   Widget build(BuildContext context){
     ScreenUtil.init(context, designSize: Size(414, 812), allowFontScaling: false);
 
-    return SafeArea(
-      child:OverlayTooltipScaffold(
+    return OverlayTooltipScaffold(
         overlayColor: Colors.grey.withOpacity(0.9),
         controller: _controller,
 
@@ -381,6 +380,7 @@ class _GpaCalculatorState extends State<GpaCalculator> {
           await Future.delayed(const Duration(milliseconds: 00));
           return initializedWidgetLength == 2 && !done;
         },
+      child:SafeArea(
       child:Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: isdark ? darkBG : Colors.white,
