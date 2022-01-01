@@ -23,47 +23,60 @@ class _MTooltipState extends State<MTooltip> {
   @override
   Widget build(BuildContext context) {
     //return Scaffold(
-     return Container(
+    return Container(
       width: MediaQuery.of(context).size.width * .7,
       margin: EdgeInsets.only(top:10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.only(left:20,top:15,right:20,bottom:15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600),
+              Container(
+                //margin : EdgeInsets.only(bottom:20),
+                alignment: Alignment.centerRight,
+                //alignment: Alignment.topLeft,
+                child: GestureDetector(
+                  onTap: () {
+                    controller.dismiss();
+                  },
+                  child: Icon(Icons.cancel_outlined,
+                      color: Colors.black.withOpacity(.6), size: 18),
+                ),
               ),
-              InkWell(
+              /*InkWell(
                 onTap: () {
                   controller.dismiss();
                 },
                 child: Icon(Icons.cancel_outlined,
                     color: Colors.black.withOpacity(.6), size: 18),
-              )
+              ),*/
+              Center(
+                child:Text(
+                title,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600),
+              ),)
             ],
           ),
           const SizedBox(
-            height: 16,
+            height: 10,
           ),
           Divider(
             height: 1,
             thickness: 1,
-            color: Colors.grey[100],
+            color: Colors.grey[300],
           ),
           const SizedBox(
-            height: 16,
+            height: 10,
           ),
           Stack(
             children: [
@@ -83,10 +96,11 @@ class _MTooltipState extends State<MTooltip> {
                               borderRadius: BorderRadius.circular(5))),
                       child: const Padding(
                         padding:
-                        EdgeInsets.symmetric(horizontal: 10),
+                        EdgeInsets.symmetric(horizontal: 15),
                         child: Text(
                           'Prev',
                           style: TextStyle(
+                            fontSize: 12.5,
                             color: Colors.white,
                           ),
                         ),
@@ -115,11 +129,12 @@ class _MTooltipState extends State<MTooltip> {
                             borderRadius: BorderRadius.circular(5))),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10),
+                          horizontal: 15),
                       child: Text(
                         //currentDisplayIndex == totalLength ? 'Got it' : 'Next',
                         (controller.nextPlayIndex + 1) == controller.playWidgetLength ? 'Got it' : 'Next',
                         style: const TextStyle(
+                          fontSize: 12.5,
                           color: Colors.white,
                         ),
                       ),
@@ -131,7 +146,7 @@ class _MTooltipState extends State<MTooltip> {
           )
         ],
       ),
-    //),
+      //),
     );
   }
 }
